@@ -57,6 +57,106 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void display7SEG(int num){
+	if (num==0){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, SET);
+	}
+	else if (num==1){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, SET);
+	}
+
+	else if (num==2){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==3){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==4){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==5){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==6){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==7){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, SET);
+	}
+	else if (num==8){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+	else if (num==9){
+		HAL_GPIO_WritePin(GPIOB, pot0_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot1_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot2_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot3_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot4_Pin, SET);
+		HAL_GPIO_WritePin(GPIOB, pot5_Pin, RESET);
+		HAL_GPIO_WritePin(GPIOB, pot6_Pin, RESET);
+	}
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -89,7 +189,7 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -160,7 +260,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 7999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1;
+  htim2.Init.Period = 9;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -203,8 +303,8 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, Led_Pin|EN0_Pin|EN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
-                          |SEG4_Pin|SEG5_Pin|SEG6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, pot0_Pin|pot1_Pin|pot2_Pin|pot3_Pin
+                          |pot4_Pin|pot5_Pin|pot6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Led_Pin EN0_Pin EN1_Pin */
   GPIO_InitStruct.Pin = Led_Pin|EN0_Pin|EN1_Pin;
@@ -213,10 +313,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SEG0_Pin SEG1_Pin SEG2_Pin SEG3_Pin
-                           SEG4_Pin SEG5_Pin SEG6_Pin */
-  GPIO_InitStruct.Pin = SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
-                          |SEG4_Pin|SEG5_Pin|SEG6_Pin;
+  /*Configure GPIO pins : pot0_Pin pot1_Pin pot2_Pin pot3_Pin
+                           pot4_Pin pot5_Pin pot6_Pin */
+  GPIO_InitStruct.Pin = pot0_Pin|pot1_Pin|pot2_Pin|pot3_Pin
+                          |pot4_Pin|pot5_Pin|pot6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -227,7 +327,31 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+int counter = 50;
+int currentDisplay = 1;
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(counter > 0)
+	{
+		counter -- ;
+		if(counter <= 0)
+		{
+			counter = 50;
+			if(currentDisplay == 1)
+			{
+				HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+				HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+				display7SEG(1);
+				currentDisplay = 2;
+			}
+			else {
+				HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+				HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+				display7SEG(2);
+				currentDisplay = 1;
+			}
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /**
