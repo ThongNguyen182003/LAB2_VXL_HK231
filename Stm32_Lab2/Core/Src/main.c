@@ -177,6 +177,7 @@ void update7SEG(int index){
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 		display7SEG(led_buffer[1]);
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		break;
 	case 2 :
 		//Display the first 7SEG with led_buffer[2]
@@ -304,7 +305,8 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief TIM2 Initialization Function
+  * @brief TIM2 Initialization Functio
+
   * @param None
   * @retval None
   */
@@ -405,9 +407,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			{
 				update7SEG(index_led);
 				index_led++;
+				if(index_led == 2)
+				{
+					HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, RESET);
+				}
+				else {
+					HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);
+				}
 			} else
 				{
-				HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 				index_led = 0 ;
 				}
 		}
