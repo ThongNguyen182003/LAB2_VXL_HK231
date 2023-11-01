@@ -3,9 +3,11 @@
 ../Core/Src/main.c:206:6:updateClockBuffer	16	static
 ../Core/Src/main.c:218:6:setTimer0	16	static
 ../Core/Src/main.c:222:6:timer_run	4	static
-../Core/Src/main.c:235:5:main	24	static
-../Core/Src/main.c:304:6:SystemClock_Config	72	static
-../Core/Src/main.c:341:13:MX_TIM2_Init	32	static
-../Core/Src/main.c:386:13:MX_GPIO_Init	32	static
-../Core/Src/main.c:427:6:HAL_TIM_PeriodElapsedCallback	16	static
-../Core/Src/main.c:436:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:243:6:DiplayMatrix	16	static
+../Core/Src/main.c:254:6:ColumMatrix	16	static
+../Core/Src/main.c:272:5:main	16	static
+../Core/Src/main.c:325:6:SystemClock_Config	72	static
+../Core/Src/main.c:362:13:MX_TIM2_Init	32	static
+../Core/Src/main.c:407:13:MX_GPIO_Init	32	static
+../Core/Src/main.c:460:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:469:6:Error_Handler	4	static,ignoring_inline_asm
