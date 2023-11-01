@@ -262,6 +262,15 @@ void ColumMatrix(int input){
 	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, SET ? !(matrix_buffer[input] & matrix_buffer[7]) : RESET);
 }
 
+void roateColum(uint8_t matrix[], int len){
+	int previous = matrix[0];
+	for(int i = 0; i < len - 1; i++)
+	{
+		matrix[i] = matrix[i+1];
+	}
+	matrix[len-1] = previous;
+}
+
 
 /* USER CODE END 0 */
 
@@ -301,16 +310,47 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int index_colum = 0;
+  int check_rouate = 0;
+  int index_rouate = 0 ;
+  int count1 =0 ;
+  int count2 = 0;
+  int previous = 0 ;
   while (1)
   {
-	  ColumMatrix(index_colum);
-	  DiplayMatrix(characterA[index_colum]);
-	  index_colum++;
 	  if(index_colum > 7)
 	  {
-		  index_colum = 0;
+		  count2++;
+		  if(count2 >= 1)
+		  {
+			  if(check_rouate == 0)
+			  {
+				  previous = characterA[0];
+				  check_rouate = 1 ;
+			  } else {
+				  characterA[index_rouate] = characterA[index_rouate + 1];
+				  index_rouate ++;
+				  if(index_rouate > 7)
+				  {
+					  characterA[7] = previous;
+					  check_rouate = 0;
+					  index_rouate = 0;
+					  index_colum = 0;
+				  }
+			  }
+			  count2 = 0;
+		  }
 	  }
-	  HAL_Delay(50);
+	  else {
+		  count1 ++ ;
+		  if(count1 >= 2)
+		  {
+			  ColumMatrix(index_colum);
+			  DiplayMatrix(characterA[index_colum]);
+			  index_colum++;
+			  count1 =0 ;
+		  }
+	  }
+	  HAL_Delay(1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
