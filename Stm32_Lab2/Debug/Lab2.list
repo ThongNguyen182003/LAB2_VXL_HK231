@@ -484,8 +484,8 @@ int main(void)
  8000420:	2300      	movs	r3, #0
  8000422:	607b      	str	r3, [r7, #4]
 	  }
-	  HAL_Delay(50);
- 8000424:	2032      	movs	r0, #50	; 0x32
+	  HAL_Delay(3);
+ 8000424:	2003      	movs	r0, #3
  8000426:	f000 f9f9 	bl	800081c <HAL_Delay>
 	  ColumMatrix(index_colum);
  800042a:	e7e9      	b.n	8000400 <main+0x20>

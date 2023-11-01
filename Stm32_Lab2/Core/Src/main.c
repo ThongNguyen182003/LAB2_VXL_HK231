@@ -310,7 +310,7 @@ int main(void)
 	  {
 		  index_colum = 0;
 	  }
-	  HAL_Delay(50);
+	  HAL_Delay(3);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
